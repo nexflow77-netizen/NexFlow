@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexFlow - أتمتة الأعمال الذكية</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0052cc;
+            --secondary: #00d4ff;
+            --dark: #0d0d0d;
+            --darker: #000000;
+            --light: #f8f9fa;
+            --success: #10b981;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #001a4d 0%, #0d0d0d 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--darker) 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 82, 204, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--secondary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--secondary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: #ccc;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: #999;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--darker);
+        }
+
+        /* Section */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: var(--secondary);
+            margin-bottom: 60px;
+            font-weight: bold;
+        }
+
+        /* Services */
+        .services {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 82, 204, 0.2);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, var(--primary), #00008b);
+            color: white;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0, 82, 204, 0.3);
+        }
+
+        .price-box h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .price-amount {
+            font-size: 56px;
+            color: var(--secondary);
+            margin: 25px 0;
+            font-weight: bold;
+        }
+
+        .price-box ul {
+            list-style: none;
+            margin: 35px 0;
+            text-align: right;
+        }
+
+        .price-box li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .price-box li:last-child {
+            border-bottom: none;
+        }
+
+        .checkmark {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Features */
+        .features {
+            background: transparent;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.2), rgba(0, 212, 255, 0.1));
+            padding: 30px;
+            border-radius: 12px;
+            color: white;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateX(8px);
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.3), rgba(0, 212, 255, 0.15));
+        }
+
+        .feature-item h3 {
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .feature-item p {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        /* Contact */
+        .contact {
+            background: white;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact h2 {
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 36px;
+        }
+
+        .contact-item {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .contact-label {
+            color: #666;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .contact-value {
+            color: var(--secondary);
+            font-size: 18px;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        .contact-value a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .price-box {
+                padding: 30px;
+            }
+
+            .price-amount {
+                font-size: 42px;
+            }
+
+            .contact {
+                padding: 25px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .section-title, .service-card, .price-box, .feature-item {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">⚡ NexFlow</div>
+            <nav>
+                <a href="#services">الخدمات</a>
+                <a href="#pricing">الأسعار</a>
+                <a href="#contact">التواصل</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>أتمتة الأعمال الذكية 🚀</h1>
+        <p class="hero-subtitle">حول مشروعك إلى نظام أوتوماتيكي يعمل 24/7</p>
+        <p class="hero-description">Telegram • WhatsApp • Instagram • Facebook</p>
+        <div class="buttons">
+            <a href="https://wa.me/9647865586860?text=السلام%20عليكم%20أريد%20استشارة%20عن%20خدمات%20NexFlow" 
+               class="btn-primary" target="_blank">
+                💬 تواصل عبر WhatsApp
+            </a>
+            <a href="#contact" class="btn-secondary">معلومات التواصل</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">الخدمات</h2>
+        <div class="services">
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🤖 22+ بوت Telegram</h3>
+                    <p>نماذج جاهزة للعقارات، المطاعم، الصيدليات، الفنادق، المحلات وأكثر بكثير</p>
+                </div>
+                <div class="service-card">
+                    <h3>📱 بوتات WhatsApp</h3>
+                    <p>أتمتة كاملة لرسائل WhatsApp والردود التلقائية والتواصل الذكي</p>
+                </div>
+                <div class="service-card">
+                    <h3>📸 بوتات Instagram</h3>
+                    <p>إدارة رسائل Instagram والتفاعل التلقائي مع المتابعين والعملاء</p>
+                </div>
+                <div class="service-card">
+                    <h3>👥 بوتات Facebook</h3>
+                    <p>أتمتة صفحات Facebook والتواصل مع العملاء والردود التلقائية</p>
+                </div>
+                <div class="service-card">
+                    <h3>📊 تقارير يومية</h3>
+                    <p>تقارير تلقائية وتحديثات يومية عن نشاطك التجاري بسهولة</p>
+                </div>
+                <div class="service-card">
+                    <h3>⚙️ تكامل كامل</h3>
+                    <p>ربط جميع قنوات التواصل في نظام واحد ذكي متناسق</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <h2 class="section-title">الأسعار</h2>
+        <div class="price-box">
+            <h3>حزمة البوت الكامل</h3>
+            <div class="price-amount">69,000 د.ع</div>
+            <ul>
+                <li><span class="checkmark">✓</span> تصميم وتطوير البوت الكامل</li>
+                <li><span class="checkmark">✓</span> ربط جميع القنوات (Telegram, WhatsApp, Instagram, Facebook)</li>
+                <li><span class="checkmark">✓</span> دعم فني مدى الحياة</li>
+                <li><span class="checkmark">✓</span> تحديثات مستقبلية مجانية</li>
+                <li><span class="checkmark">✓</span> تقارير يومية تلقائية</li>
+            </ul>
+            <a href="https://wa.me/9647865586860?text=السلام%20عليكم%20أريد%20حجز%20خدمة%20البوت%20الكامل" 
+               class="btn-primary" target="_blank">
+                💬 اطلب الآن
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">لماذا NexFlow؟</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>🚀 سريع وفعال</h3>
+                <p>بوتات تعمل 24/7 بدون توقف وتستجيب فوراً</p>
+            </div>
+            <div class="feature-item">
+                <h3>💰 توفير كبير</h3>
+                <p>قلل التكاليف الإدارية وزيادة الإنتاجية بشكل كبير</p>
+            </div>
+            <div class="feature-item">
+                <h3>📱 متعدد المنصات</h3>
+                <p>كل القنوات في نظام واحد متكامل وسهل</p>
+            </div>
+            <div class="feature-item">
+                <h3>🎯 مخصص لبيزنسك</h3>
+                <p>حل خاص ومصمم لكل نوع عمل وصناعة</p>
+            </div>
+            <div class="feature-item">
+                <h3>🔧 سهل الاستخدام</h3>
+                <p>لا تحتاج خبرة تقنية لتشغيل واستخدام البوت</p>
+            </div>
+            <div class="feature-item">
+                <h3>📞 دعم مستمر</h3>
+                <p>فريق متخصص دائماً متاح لمساعدتك وحل المشاكل</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact">
+            <h2>تواصل معنا الآن</h2>
+            
+            <div class="contact-item">
+                <span class="contact-label">البريد الإلكتروني:</span>
+                <a href="mailto:nexflow77@gmail.com" class="contact-value">
+                    nexflow77@gmail.com
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-label">WhatsApp:</span>
+                <a href="https://wa.me/9647865586860?text=السلام%20عليكم%20أريد%20استشارة%20عن%20خدمات%20NexFlow" 
+                   target="_blank" class="contact-value">
+                    07865586860 (اضغط للتواصل)
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-label">وقت الاستجابة:</span>
+                <span class="contact-value">استجب في أقل من ساعة ⚡</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 NexFlow - أتمتة الأعمال الذكية. جميع الحقوق محفوظة</p>
+    </footer>
+</body>
+  </html>
